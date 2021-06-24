@@ -62,16 +62,16 @@ function leerDatosCurso(curso){
     const existe = articulosCarrito.some( curso => curso.id === infoCurso.id);
 
     if (existe) {
-        
+
         //actualizamos la cantidad
         const cursos = articulosCarrito.map(curso =>{
         
             if (curso.id === infoCurso.id) {
                 curso.cantidad++;
-                // console.log(typeof curso.precio);
+                
                 if (typeof curso.precio === 'string') {
-                    curso.precio = curso.precioAcumulado.replace(/\$/g, '');
-                    curso.precio = parseInt(curso.precio);
+                    curso.precio = curso.precioAcumulado.replace(/\$/g, ''); //elimina el simbolo de dolar 
+                    curso.precio = parseInt(curso.precio); // se convierte a entero
                 }
 
                 curso.precioAcumulado = `$${curso.precio * curso.cantidad}`;
