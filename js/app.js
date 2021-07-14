@@ -18,6 +18,11 @@ function cargarEventListeners(){
         articulosCarrito = [];
         limpiarHTML();
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        articulosCarrito = JSON.parse(localStorage.getItem('cursos') || []);
+        carritoHTML();
+    });
 }
 
 //funciones
@@ -113,7 +118,13 @@ function carritoHTML(){
         `;
         //agrega HTML del carrito en el tbody
         contenedorCarrito.appendChild(row);
-    })
+    });
+    sincronizarStorage();
+}
+
+//agrega los cursos al locarStorage
+function sincronizarStorage(){
+     localStorage.setItem('cursos', JSON.stringify(articulosCarrito));
 }
 
 //elimina los cursos del tbody
@@ -126,5 +137,4 @@ function limpiarHTML(){
         contenedorCarrito.removeChild(contenedorCarrito.firstChild);
     }
 }
-
 
